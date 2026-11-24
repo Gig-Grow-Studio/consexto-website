@@ -391,13 +391,13 @@ button{font:inherit;color:inherit}
         </div>
       </div>
       <div class="dd" data-dd>
-        <button type="button" aria-expanded="false" data-nav="bespoke">Bespoke <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
+        <button type="button" aria-expanded="false" data-nav="projects">Projects <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="mega">
           <div class="wrap">
             <div class="mega-intro">
-              <span class="eyebrow">Bespoke</span>
-              <p>Where every room becomes a signature.</p>
-              <a class="link" href="#bespoke">All projects <span class="ar"></span></a>
+              <span class="eyebrow">Projects</span>
+              <p>Every project, a signature.</p>
+              <a class="link" href="#projects">All projects <span class="ar"></span></a>
             </div>
             <div class="mega-items two" id="mega-projects"></div>
           </div>
@@ -433,7 +433,7 @@ button{font:inherit;color:inherit}
     </div>
     <div class="ftr-cols">
       <div><h4>Services</h4><ul><li><a href="#home-cinema">Home Cinema</a></li><li><a href="#image-and-sound">Image &amp; Sound</a></li><li><a href="#home-automation">Home Automation</a></li></ul></div>
-      <div><h4>Bespoke</h4><ul><li><a href="#skyfall">Skyfall</a></li><li><a href="#wine-theatre">Wine Theatre</a></li></ul></div>
+      <div><h4>Projects</h4><ul><li><a href="#skyfall">Skyfall</a></li><li><a href="#wine-theatre">Wine Theatre</a></li></ul></div>
       <div><h4>Studio</h4><ul><li><a href="#about">About us</a></li><li><a href="#contact">Contact</a></li></ul></div>
       <div><h4>Showrooms</h4><ul><li>Porto</li><li>Cascais</li><li>Algarve</li></ul></div>
       <div><h4>Porto Lab</h4><ul><li>Av. da Boavista 3769 L29/30</li><li>4100-139 Porto, Portugal</li><li style="user-select:all">+351 222 022 106</li></ul></div>
@@ -565,7 +565,7 @@ function steps(list,light){
   return `<ol class="steps" style="--n:${list.length}">${list.map((s,i)=>`<li><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${s[0]}</h3><p>${s[1]}</p></li>`).join('')}</ol>`;
 }
 function enquiry(subject,title,o={}){
-  const opts = ['Home Cinema','Image & Sound','Home Automation','Bespoke project','Not sure yet'].map(o=>`<option${o===subject?' selected':''}>${o}</option>`).join('');
+  const opts = ['Home Cinema','Image & Sound','Home Automation','A custom project','Not sure yet'].map(o=>`<option${o===subject?' selected':''}>${o}</option>`).join('');
   return `<section class="band" id="enquire"><div class="wrap enq">
     <div class="stack"><span class="eyebrow">${o.eyebrow||'Your space. Our signature.'}</span>
       <h2 class="display d2">${title}</h2>
@@ -618,19 +618,19 @@ home(){
     </div></section>`
   + `<section class="chapter"><img src="${I('wine')}" alt="" loading="lazy">
       <div class="wrap"><div class="chapter-in">
-        <span class="eyebrow">Beyond the signature rooms</span>
+        <span class="eyebrow">Beyond the collection</span>
         <h2 class="display d2">Looking for something entirely your own?</h2>
         <p>Forma, Axis and Lumen are our starting points. When a space asks for more, we design it from a blank page: your architecture, your rituals, one room that exists nowhere else.</p>
-        <a class="link" href="#bespoke">Discover bespoke ${arrow}</a>
+        <a class="link" href="#projects">See our projects ${arrow}</a>
       </div></div>
     </section>`
   + `<section class="band"><div class="wrap split">
-      <div class="ph" style="aspect-ratio:4/5"><img src="${I('skyfall')}" alt="Skyfall bespoke cinema" loading="lazy"></div>
-      <div class="txt"><span class="eyebrow">Bespoke · Signature</span>
+      <div class="ph" style="aspect-ratio:4/5"><img src="${I('skyfall')}" alt="Skyfall private cinema" loading="lazy"></div>
+      <div class="txt"><span class="eyebrow">Projects</span>
         <h2 class="display d2">Where every room becomes a signature</h2>
         <p class="body" style="margin:0">We go beyond predefined concepts. Every space begins with a unique vision, shaped by character, intention and precision. The result is an environment designed exclusively for the way you live.</p>
         <ul class="plist">${Object.entries(PROJECTS).map(([k,p])=>`<li><a href="#${k}"><img src="${I(p.img)}" alt="" loading="lazy"><div><b>${p.name}</b><span>${p.tag}</span></div><span class="ar" style="width:28px;height:1px;background:currentColor;position:relative"></span></a></li>`).join('')}</ul>
-        <div><a class="btn" href="#bespoke">Explore bespoke</a></div>
+        <div><a class="btn" href="#projects">View all projects</a></div>
       </div>
     </div></section>`
   + `<section class="band on-mist"><div class="wrap">
@@ -766,8 +766,8 @@ services(){
   + enquiry('Home Cinema','Your space. Our signature.',{eyebrow:'Start your project',text:'Every space is unique. Each model is designed to adapt to your home, your lifestyle and your vision.'});
 },
 
-bespoke(){
-  return hero({img:'skyfall',eyebrow:'Bespoke · Signature',title:'Where every room becomes a signature',lede:'No templates. No repetition. Only environments designed with purpose, precision and individuality.'})
+projects(){
+  return hero({img:'skyfall',eyebrow:'Projects',title:'Where every room becomes a signature',lede:'No templates. No repetition. Only environments designed with purpose, precision and individuality.'})
   + `<section class="band on-light"><div class="wrap split" style="align-items:start">
       <div class="stack"><span class="eyebrow">What we do</span><h2 class="display d2">Crafted without compromise</h2></div>
       <div class="stack" style="padding-top:clamp(0px,4vw,48px)">
@@ -776,12 +776,12 @@ bespoke(){
       </div>
     </div></section>`
   + `<section class="band"><div class="wrap">
-      <div class="shead"><div><span class="eyebrow">Our bespoke solutions</span><h2 class="display d2">Selected projects</h2></div></div>
+      <div class="shead"><div><span class="eyebrow">Portfolio</span><h2 class="display d2">Selected projects</h2></div></div>
       <div class="rooms" style="grid-template-columns:repeat(2,minmax(0,1fr))">${Object.entries(PROJECTS).map(([k,p])=>`<a class="rcard" href="#${k}" style="aspect-ratio:4/5"><img src="${I(p.img)}" alt="${p.name}" loading="lazy"><span class="num">${p.type}</span><div class="meta"><h3>${p.name}</h3><p>${p.tag}</p><span class="link" style="min-height:32px">View case study ${arrow}</span></div></a>`).join('')}</div>
     </div></section>`
   + `<section class="band on-char"><div class="wrap">
-      <div class="shead"><div><span class="eyebrow">The bespoke process</span><h2 class="display d2">Designed once. For you.</h2></div></div>${steps(BESPOKE_STEPS)}</div></section>`
-  + enquiry('Bespoke project','Begin your signature');
+      <div class="shead"><div><span class="eyebrow">How we work</span><h2 class="display d2">Designed once. For you.</h2></div></div>${steps(BESPOKE_STEPS)}</div></section>`
+  + enquiry('A custom project','Begin your project');
 },
 
 contact(){
@@ -799,7 +799,7 @@ contact(){
 function heroItems(){
   const HI={'home-cinema':'hforma','image-and-sound':'hlumen','home-automation':'hseating'};
   return Object.entries(SERVICES).map(([k,v])=>({num:v.num,name:v.name,img:HI[k],href:'#'+k,label:'Discover '+v.name}))
-    .concat([{num:'04',name:'Bespoke',img:'hskyfall',href:'#bespoke',label:'Discover Bespoke',bespoke:true}]);
+    .concat([{num:'04',name:'Projects',img:'hskyfall',href:'#projects',label:'See our projects',bespoke:true}]);
 }
 function heroHome(){
   const items=heroItems();
@@ -814,7 +814,7 @@ function heroHome(){
         <div class="hh-cta"><a class="btn" href="#home-cinema" style="min-height:40px;padding:0 20px">Discover our world</a></div>
       </div>
       <div class="wrap hh-bar">
-        <div class="hh-rooms" role="tablist" aria-label="Services and bespoke">${items.map((it,i)=>`<button type="button" class="hh-room${i===0?' on':''}${it.bespoke?' is-bespoke':''}" data-i="${i}" role="tab" aria-selected="${i===0}"><span class="hh-meta"><span class="hh-n">${it.num}</span><span class="hh-name">${it.name}</span></span><span class="hh-prog"><i></i></span></button>`).join('')}</div>
+        <div class="hh-rooms" role="tablist" aria-label="Services and projects">${items.map((it,i)=>`<button type="button" class="hh-room${i===0?' on':''}${it.bespoke?' is-bespoke':''}" data-i="${i}" role="tab" aria-selected="${i===0}"><span class="hh-meta"><span class="hh-n">${it.num}</span><span class="hh-name">${it.name}</span></span><span class="hh-prog"><i></i></span></button>`).join('')}</div>
         <a class="hh-view link" href="${items[0].href}" id="hh-view">${items[0].label} <span class="ar"></span></a>
       </div>
     </div>
@@ -875,7 +875,7 @@ function roomView(k){
 
 function projectView(k){
   const p = PROJECTS[k], keys = Object.keys(PROJECTS), nx = keys[(keys.indexOf(k)+1)%keys.length];
-  return hero({img:p.img,eyebrow:`Bespoke · ${p.type}`,title:p.name,lede:p.tag,cta:'<div style="margin-top:6px"><a class="btn" href="#enquire" style="min-height:40px;padding:0 20px">Enquire</a></div>'})
+  return hero({img:p.img,eyebrow:`Project · ${p.type}`,title:p.name,lede:p.tag,cta:'<div style="margin-top:6px"><a class="btn" href="#enquire" style="min-height:40px;padding:0 20px">Enquire</a></div>'})
   + `<section class="band on-light"><div class="wrap split" style="align-items:start">
       <div class="stack"><span class="eyebrow">The project</span><h2 class="display d2">${p.introTitle}</h2></div>
       <div class="stack" style="padding-top:clamp(0px,4vw,48px)"><p class="body" style="margin:0">${p.intro}</p></div>
@@ -891,7 +891,7 @@ function projectView(k){
     </div></section>`
   + partnersBand()
   + `<section class="band tight on-light"><div class="wrap"><div class="shead"><div><span class="eyebrow">The process</span><h2 class="display d2">How it came to life</h2></div></div>${steps(BESPOKE_STEPS)}</div></section>`
-  + enquiry('Bespoke project','Begin your signature')
+  + enquiry('A custom project','Begin your project')
   + `<div class="wrap"><a class="next" href="#${nx}"><span class="eyebrow">Next project</span><b>${PROJECTS[nx].name}</b></a></div>`;
 }
 
@@ -910,18 +910,19 @@ function closeMenus(){
 }
 function render(){
   let h = (location.hash||'#home').slice(1) || 'home';
+  if (h==='bespoke') { history.replaceState(null,'','#projects'); h='projects'; }
   if (SECTIONS.has(h) && current){ const el=document.getElementById(h); if(el){ if(lenis) lenis.scrollTo(el,{offset:-84}); else el.scrollIntoView({behavior:'smooth'}); } closeMenus(); return; }
   let html, nav = h;
   if (VIEWS[h]) html = VIEWS[h]();
   else if (ROOMS[h]) { html = roomView(h); nav = 'services'; }
-  else if (PROJECTS[h]) { html = projectView(h); nav = 'bespoke'; }
+  else if (PROJECTS[h]) { html = projectView(h); nav = 'projects'; }
   else { h='home'; html = VIEWS.home(); }
   if (['services','home-cinema','image-and-sound','home-automation'].includes(h)) nav = 'services';
   current = h;
   app.style.animation='none'; app.offsetHeight; app.style.animation='';
   app.innerHTML = html;
   document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('is-current',a.dataset.nav===nav));
-  const names = {home:'Consexto',about:'About · Consexto','home-cinema':'Home Cinema · Consexto',services:'Services · Consexto','image-and-sound':'Image & Sound · Consexto','home-automation':'Home Automation · Consexto',bespoke:'Bespoke · Consexto',contact:'Contact · Consexto'};
+  const names = {home:'Consexto',about:'About · Consexto','home-cinema':'Home Cinema · Consexto',services:'Services · Consexto','image-and-sound':'Image & Sound · Consexto','home-automation':'Home Automation · Consexto',projects:'Projects · Consexto',contact:'Contact · Consexto'};
   document.title = names[h] || ((ROOMS[h]||PROJECTS[h]).name + ' · Consexto');
   closeMenus(); if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); else window.scrollTo(0,0); bind(); setScrolled(); startHero();
 }
