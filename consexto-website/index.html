@@ -348,6 +348,22 @@ button{font:inherit;color:inherit}
 .hh-room.is-bespoke{position:relative;padding-left:clamp(16px,2.4vw,36px);border-left:1px solid rgba(252,252,252,.25)}
 @media (max-width:700px){.hh-bar{flex-direction:column;align-items:stretch;gap:16px}.hh-rooms{grid-template-columns:repeat(4,minmax(0,1fr))}.hh-view{align-self:flex-start}}
 @media (prefers-reduced-motion:reduce){.hh-lb{display:none}.hh-slide{transition:opacity .01s}.hh-room.on .hh-prog i{animation:none;transform:scaleX(1)}}
+.cards{display:grid;grid-template-columns:repeat(var(--c,4),minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.scard{display:flex;flex-direction:column;gap:14px;min-width:0}
+.scard .ph{aspect-ratio:4/5;overflow:hidden;background:var(--graphite)}
+.scard img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.scard:hover img{transform:scale(1.04)}
+.scard .n{font-size:11px;letter-spacing:.16em;color:var(--mute-d);margin-top:4px}
+.scard h3{margin:0;font-weight:400;font-size:16px;letter-spacing:.08em;text-transform:uppercase}
+.scard p{margin:0;font-size:14px;color:var(--mute-d);max-width:36ch}
+@media (max-width:1000px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.svc-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-d)}
+.svc-list li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid var(--line-d)}
+.svc-list .n{font-size:11px;letter-spacing:.16em;color:var(--mute-d);padding-top:3px}
+.svc-list b{display:block;font-weight:400;font-size:15px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.svc-list li span:not(.n){font-size:14px;color:var(--mute-d)}
+.hh-name{white-space:normal}
 .stack{display:flex;flex-direction:column;gap:28px}
 .center{text-align:center}
 </style>
@@ -362,15 +378,15 @@ button{font:inherit;color:inherit}
       <a href="#home" data-nav="home">Home</a>
       <a href="#about" data-nav="about">About</a>
       <div class="dd" data-dd>
-        <button type="button" aria-expanded="false" data-nav="home-cinema">Home Cinema <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
+        <button type="button" aria-expanded="false" data-nav="services">Services <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 1l4 4 4-4"/></svg></button>
         <div class="mega">
           <div class="wrap">
             <div class="mega-intro">
-              <span class="eyebrow">Home Cinema</span>
-              <p>A decade of perfection. Designed around you.</p>
-              <a class="link" href="#home-cinema">All rooms <span class="ar"></span></a>
+              <span class="eyebrow">Services</span>
+              <p>Image, sound and intelligence, integrated as one.</p>
+              <a class="link" href="#services">All services <span class="ar"></span></a>
             </div>
-            <div class="mega-items" id="mega-rooms"></div>
+            <div class="mega-items" id="mega-services"></div>
           </div>
         </div>
       </div>
@@ -416,7 +432,7 @@ button{font:inherit;color:inherit}
       </div>
     </div>
     <div class="ftr-cols">
-      <div><h4>Home Cinema</h4><ul><li><a href="#forma">Forma</a></li><li><a href="#axis">Axis</a></li><li><a href="#lumen">Lumen</a></li></ul></div>
+      <div><h4>Services</h4><ul><li><a href="#home-cinema">Home Cinema</a></li><li><a href="#image-and-sound">Image &amp; Sound</a></li><li><a href="#home-automation">Home Automation</a></li></ul></div>
       <div><h4>Bespoke</h4><ul><li><a href="#skyfall">Skyfall</a></li><li><a href="#wine-theatre">Wine Theatre</a></li></ul></div>
       <div><h4>Studio</h4><ul><li><a href="#about">About us</a></li><li><a href="#contact">Contact</a></li></ul></div>
       <div><h4>Showrooms</h4><ul><li>Porto</li><li>Cascais</li><li>Algarve</li></ul></div>
@@ -465,6 +481,32 @@ const PROJECTS = {
     d2:{title:'Crafted as one experience',text:'Materials, acoustics, lighting and technology are conceived as one architectural composition. The result is a space where technology disappears, leaving only comfort, atmosphere and timeless design.',img:'sky3'}}
 };
 
+const SERVICES = {
+  'home-cinema':{num:'01',name:'Home Cinema',tag:'A decade of perfection. Designed around you.',img:'forma',
+    desc:'For years, Consexto has refined the art of home cinema, shaping light, sound and materials into immersive environments.'},
+  'image-and-sound':{num:'02',name:'Image & Sound',tag:'Designed to be seen. Created to be felt.',img:'living',
+    desc:'Beyond the cinema room, we bring image and sound into every space, seamlessly integrated, beautifully designed and made to be lived.'},
+  'home-automation':{num:'03',name:'Home Automation',tag:'Invisible technology. Effortless living.',img:'seating',
+    desc:'Technology that understands how you live. Home automation that turns complexity into comfort through design, intelligence and precision.'}
+};
+const SOUND = [
+  ['Multi Room Audio','multiroom','Seamless sound across every space, designed to follow your lifestyle and enhance every moment at home.'],
+  ['Outdoor Cinema','outdoor','Cinematic experiences beyond walls, designed to perform beautifully in open-air environments.'],
+  ['Living Cinema','living','A refined integration of cinema into everyday spaces, where design and performance coexist naturally.'],
+  ['Hi-Fi','lumen','Pure listening experiences crafted for those who value precision, depth and musicality.']];
+const HIFI = [
+  ['Amplification','The heart of every system.','High-quality amplifiers deliver control, detail and dynamic range, allowing music to breathe with emotion and precision.'],
+  ['Loudspeakers','Where design meets performance.','From sculptural floor-standing speakers to discreet wall or in-ceiling models, we select and tune each pair to your space and personal taste.'],
+  ['Digital & streaming','Music, simplified.','The same purity of sound through advanced digital sources and streaming platforms, integrated with your home network and multi-room systems.']];
+const SMART = [
+  ['Network','network','The foundation behind every seamless experience.'],
+  ['Security','security','Protection, designed to be felt, not seen.'],
+  ['Home Control','homecontrol','Every interaction, simplified.']];
+const CINEMA_PRINCIPLES = [
+  ['Architectural precision','Every room begins with proportion, scale and materiality, integrating sound and image into the architecture from the start.'],
+  ['Acoustic artistry','Absorption, diffusion and balance are carefully calibrated to create immersive, controlled and effortless sound.'],
+  ['Human-centric design','From lighting to seating and spatial flow, every detail is considered to create comfort, anticipation and immersion.']];
+
 const STEPS = [
   ['Briefing','We begin by understanding the space, defining the foundation for every decision.'],
   ['Ideation','Ideas become a clear concept where design, technology and experience come together.'],
@@ -500,21 +542,34 @@ const arrow = '<span class="ar"></span>';
 const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 
 function hero({img,eyebrow,title,lede,cta,center}){
-  return `<section class="hero${center?' center':''}"><img src="${I(img)}" alt="" fetchpriority="high">
+  return `<section class="hero${center?' center':''}"><img src="${img.includes('/')?img:I(img)}" alt="" fetchpriority="high">
   <div class="wrap"><div class="hero-grid">
     <div class="stack" style="gap:14px">${eyebrow?`<span class="eyebrow" style="color:var(--white)">${eyebrow}</span>`:''}<h1 class="display d1">${title}</h1></div>
     ${lede||cta?`<div class="stack" style="gap:14px;${center?'align-items:center':''}">${lede?`<p class="lede" style="margin:0">${lede}</p>`:''}${cta||''}</div>`:''}
   </div></div></section>`;
 }
+function cards(list,cols){
+  return `<div class="cards" style="--c:${cols||list.length}">${list.map((x,i)=>`<div class="scard"><div class="ph"><img src="${I(x[1])}" alt="${x[0]}" loading="lazy"></div><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${x[0]}</h3><p>${x[2]}</p></div>`).join('')}</div>`;
+}
+function showrooms(){
+  return `<section class="band on-light"><div class="wrap">
+      <div class="shead"><div><span class="eyebrow">Our showrooms</span><h2 class="display d2">Experience it in person</h2></div></div>
+      <div class="shows">
+        <div><h3>Porto Lab</h3><p>A space for exploration, where technology, design and innovation come together.</p><p>Av. da Boavista 3769 L29/30, 4100-139 Porto</p><a class="link" href="#enquire">Book a visit ${arrow}</a></div>
+        <div><h3>Cascais</h3><p>Experience our cinema environments in a fully immersive setting, designed to showcase every detail.</p><p>Av. Marginal 8720, Loja 4, 2750-427 Cascais</p><a class="link" href="#enquire">Book a visit ${arrow}</a></div>
+        <div><h3>Algarve</h3><p>A refined space for private demonstrations, where comfort, performance and design come together.</p><p>Rua do Comércio 120, 8135-107 Almancil</p><a class="link" href="#enquire">Book a visit ${arrow}</a></div>
+      </div>
+    </div></section>`;
+}
 function steps(list,light){
   return `<ol class="steps" style="--n:${list.length}">${list.map((s,i)=>`<li><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${s[0]}</h3><p>${s[1]}</p></li>`).join('')}</ol>`;
 }
-function enquiry(subject,title){
-  const opts = ['Forma','Axis','Lumen','Bespoke project','Not sure yet'].map(o=>`<option${o===subject?' selected':''}>${o}</option>`).join('');
+function enquiry(subject,title,o={}){
+  const opts = ['Home Cinema','Image & Sound','Home Automation','Bespoke project','Not sure yet'].map(o=>`<option${o===subject?' selected':''}>${o}</option>`).join('');
   return `<section class="band" id="enquire"><div class="wrap enq">
-    <div class="stack"><span class="eyebrow">Your space. Our signature.</span>
+    <div class="stack"><span class="eyebrow">${o.eyebrow||'Your space. Our signature.'}</span>
       <h2 class="display d2">${title}</h2>
-      <p class="body" style="margin:0">Every space is unique. Tell us about yours and we will prepare a first proposal and invite you to experience a room in one of our showrooms.</p>
+      <p class="body" style="margin:0">${o.text||'Every space is unique. Tell us about yours and we will prepare a first proposal and invite you to experience a room in one of our showrooms.'}</p>
       <p style="margin:0;font-size:14px;color:var(--mute-d)">Prefer to talk? <span style="color:var(--white);user-select:all">${PHONE}</span></p>
     </div>
     <form class="enqform" novalidate>
@@ -548,11 +603,11 @@ home(){
       <a class="link" href="#about">About Consexto ${arrow}</a>
     </div></section>`
   + `<section class="band"><div class="wrap">
-      <div class="shead"><div><span class="eyebrow">Home Cinema</span><h2 class="display d2">A decade of perfection</h2></div><a class="link" href="#home-cinema">All rooms ${arrow}</a></div>
-      <div class="rooms">${Object.entries(ROOMS).map(([k,r])=>`<a class="rcard" href="#${k}"><img src="${I(r.img)}" alt="${r.name} cinema room" loading="lazy"><span class="num">${r.num}</span><div class="meta"><h3>${r.name}</h3><p>${r.tag}</p><span class="link" style="min-height:32px">Discover ${arrow}</span></div></a>`).join('')}</div>
+      <div class="shead"><div><span class="eyebrow">Services</span><h2 class="display d2">Integrated, by design</h2></div><a class="link" href="#services">All services ${arrow}</a></div>
+      <div class="rooms">${Object.entries(SERVICES).map(([k,v])=>`<a class="rcard" href="#${k}"><img src="${I(v.img)}" alt="${v.name}" loading="lazy"><span class="num">${v.num}</span><div class="meta"><h3>${v.name}</h3><p>${v.tag}</p><span class="link" style="min-height:32px">Discover ${arrow}</span></div></a>`).join('')}</div>
     </div></section>`
   + `<section class="band on-light" id="features"><div class="wrap">
-      <div class="shead"><div><span class="eyebrow">Features</span><h2 class="display d2">Each room, its own character</h2></div></div>
+      <div class="shead"><div><span class="eyebrow">Home Cinema · Signature rooms</span><h2 class="display d2">Each room, its own character</h2></div></div>
       <div class="tabs" role="tablist" aria-label="Rooms">${Object.entries(ROOMS).map(([k,r],i)=>`<button class="tab" role="tab" type="button" id="tab-${k}" aria-controls="panel" aria-selected="${i===0}" data-room="${k}">${r.name}</button>`).join('')}</div>
       <div id="panel" role="tabpanel">${featurePanel('forma')}</div>
     </div></section>`
@@ -620,30 +675,95 @@ about(){
   + partnersBand();
 },
 
-'home-cinema'(){
-  return hero({img:'axis',eyebrow:'Home Cinema',title:'A decade of perfection',lede:'Designed around you. Three signature rooms, each shaped by geometry, proportion, texture and light.'})
-  + `<section class="band on-light"><div class="wrap split" style="align-items:start">
-      <div class="stack"><span class="eyebrow">The vision</span><h2 class="display d2">The pursuit of the perfect room</h2></div>
-      <div class="stack" style="padding-top:clamp(0px,4vw,48px)">
-        <p class="body" style="margin:0">For over fifteen years, Consexto has designed and built some of Europe's most refined private cinemas. Along the way, a set of recurring principles emerged: geometry, proportion, texture and light.</p>
-        <p class="body" style="margin:0">These principles shape every cinema we create, balancing performance, aesthetics and the way each client chooses to live.</p>
-      </div>
-    </div></section>`
-  + Object.entries(ROOMS).map(([k,r],i)=>`<section class="band${i%2?' on-char':''}"><div class="wrap split">
-      ${i%2?'':`<a class="ph" href="#${k}" style="aspect-ratio:16/11"><img src="${I(r.img)}" alt="${r.name} cinema room" loading="lazy"></a>`}
-      <div class="txt"><span class="eyebrow">${r.num} / 03</span><h2 class="display d2">${r.name}</h2>
-        <p class="lede" style="margin:0">${r.tag}</p>
-        <p class="body" style="margin:0">${r.philosophy}</p>
-        <div><a class="btn" href="#${k}">Discover ${r.name}</a></div></div>
-      ${i%2?`<a class="ph" href="#${k}" style="aspect-ratio:16/11"><img src="${I(r.img)}" alt="${r.name} cinema room" loading="lazy"></a>`:''}
+services(){
+  return hero({img:'img/hlumen.webp',eyebrow:'Services',title:'Integrated, by design',lede:'Image, sound and intelligence, designed with the architecture and calibrated to disappear into the space.'})
+  + Object.entries(SERVICES).map(([k,v],i)=>`<section class="band${i%2?' on-char':''}"><div class="wrap split">
+      ${i%2?'':`<a class="ph" href="#${k}" style="aspect-ratio:16/11"><img src="${I(v.img)}" alt="${v.name}" loading="lazy"></a>`}
+      <div class="txt"><span class="eyebrow">${v.num} / 03</span><h2 class="display d2">${v.name}</h2>
+        <p class="lede" style="margin:0">${v.tag}</p>
+        <p class="body" style="margin:0">${v.desc}</p>
+        <div><a class="btn" href="#${k}">Discover ${v.name}</a></div></div>
+      ${i%2?`<a class="ph" href="#${k}" style="aspect-ratio:16/11"><img src="${I(v.img)}" alt="${v.name}" loading="lazy"></a>`:''}
     </div></section>`).join('')
+  + `<section class="band tight on-light"><div class="wrap"><div class="shead"><div><span class="eyebrow">The process</span><h2 class="display d2">One team, from first idea to delivery</h2></div></div>${steps(STEPS)}</div></section>`
+  + enquiry('Not sure yet','Start your project');
+},
+
+'image-and-sound'(){
+  return hero({img:'img/hlumen.webp',eyebrow:'Services · 02',title:'Image & Sound',lede:'Designed to be seen. Created to be felt.',cta:'<div style="margin-top:6px"><a class="btn" href="#solutions">Explore</a></div>'})
+  + `<section class="band on-light"><div class="wrap statement">
+      <span class="eyebrow">Image and sound</span>
+      <p>Beyond the cinema room, we bring image and sound into every space, seamlessly integrated, beautifully designed and made to be lived.</p>
+    </div></section>`
+  + `<section class="band"><div class="wrap split">
+      <div class="ph" style="aspect-ratio:4/5"><img src="${I('sky2')}" alt="Loudspeaker detail" loading="lazy"></div>
+      <div class="txt"><span class="eyebrow">Our approach</span><h2 class="display d2">Beyond entertainment. Into experience.</h2>
+        <p class="body" style="margin:0">At Consexto, technology enhances architecture, never competing with it.</p>
+        <p class="body" style="margin:0">Every project begins with the space and the way it will be lived. Image, sound, lighting and intelligent control are seamlessly integrated to create intuitive, refined solutions.</p>
+        <p class="body" style="margin:0">The result is a living experience where comfort, performance and design exist in harmony.</p></div>
+    </div></section>`
+  + `<section class="band on-char" id="solutions"><div class="wrap">
+      <div class="shead"><div><span class="eyebrow">Our solutions</span><h2 class="display d2">Image and sound, in every space</h2></div></div>
+      ${cards(SOUND,4)}
+    </div></section>`
+  + `<section class="band on-light"><div class="wrap">
+      <div class="split" style="align-items:start;margin-bottom:clamp(40px,5vw,72px)">
+        <div class="stack"><span class="eyebrow">Hi-Fi</span><h2 class="display d2">Where sound becomes experience</h2></div>
+        <div class="stack">
+          <p class="body" style="margin:0">High-fidelity sound reproduces music exactly as it was recorded, nothing added, nothing lost. It is the pursuit of absolute clarity, balance and depth through meticulously chosen components, precise tuning and acoustic harmony.</p>
+          <p class="body" style="margin:0">We design and integrate Hi-Fi systems that match your lifestyle and architecture, combining technical mastery with visual elegance.</p>
+        </div>
+      </div>
+      <div class="trio">${HIFI.map(x=>`<div><h3>${x[0]}</h3><p style="color:var(--ink)">${x[1]}</p><p>${x[2]}</p></div>`).join('')}</div>
+    </div></section>`
+  + partnersBand()
+  + enquiry('Image & Sound','Experience it for yourself',{eyebrow:'Visit our showroom',text:'Visit our showroom and discover how image and sound transform everyday living.'});
+},
+
+'home-automation'(){
+  return hero({img:'seating',eyebrow:'Services · 03',title:'Home Automation',lede:'Invisible technology. Effortless living.',cta:'<div style="margin-top:6px"><a class="btn" href="#solutions">Explore</a></div>'})
+  + `<section class="band on-light"><div class="wrap statement">
+      <span class="eyebrow">Intelligence in motion</span>
+      <p>Technology that understands how you live. At Consexto, home automation is about simplicity, turning complexity into comfort through design, intelligence and precision.</p>
+    </div></section>`
+  + `<section class="band"><div class="wrap split">
+      <div class="txt"><span class="eyebrow">Home automation</span><h2 class="display d2">Beauty in control</h2>
+        <p class="body" style="margin:0">Every action becomes effortless. Lighting, climate, security and entertainment work in harmony, responding naturally to the way you live.</p>
+        <p class="body" style="margin:0">Technology fades into the background, leaving only comfort, balance and the confidence that everything simply works.</p>
+        <p class="body" style="margin:0">Every system is thoughtfully integrated into your architecture, adapting to your lifestyle with precision and never demanding your attention.</p></div>
+      <div class="ph" style="aspect-ratio:4/5"><img src="${I('room80')}" alt="Entrance with integrated control" loading="lazy"></div>
+    </div></section>`
+  + `<section class="band on-char" id="solutions"><div class="wrap">
+      <div class="shead"><div><span class="eyebrow">Our solutions</span><h2 class="display d2">Connected. Controlled. Secure.</h2></div></div>
+      ${cards(SMART,3)}
+    </div></section>`
+  + enquiry('Home Automation','Intelligence, made simple',{eyebrow:'Visit our showroom',text:'Discover how intelligent automation transforms everyday living with effortless comfort and control.'});
+},
+
+'home-cinema'(){
+  return hero({img:'img/hforma.webp',eyebrow:'Services · 01',title:'Home Cinema',lede:'A decade of perfection. Designed around you.',cta:'<div style="margin-top:6px"><a class="btn" href="#collection">Explore</a></div>'})
+  + `<section class="band on-light"><div class="wrap statement">
+      <span class="eyebrow">The concept</span>
+      <p>For years, Consexto has refined the art of home cinema, shaping light, sound and materials into immersive environments. Every project is approached as an architectural exercise, where technology is integrated with intention and every detail contributes to the experience.</p>
+    </div></section>`
+  + `<section class="band"><div class="wrap split">
+      <div class="ph" style="aspect-ratio:4/5"><img src="${I('detail')}" alt="Private cinema detail" loading="lazy"></div>
+      <div class="txt"><span class="eyebrow">The vision</span><h2 class="display d2">The pursuit of the perfect room</h2>
+        <p class="body" style="margin:0">For over fifteen years, Consexto has designed and built some of Europe's most refined private cinemas.</p>
+        <p class="body" style="margin:0">Through this journey, a set of recurring principles emerged: geometry, proportion, texture and light.</p>
+        <p class="body" style="margin:0">These principles continue to shape every cinema we create, balancing performance, aesthetics and the way each client chooses to live.</p></div>
+    </div></section>`
+  + `<section class="band on-char" id="collection"><div class="wrap">
+      <div class="shead"><div><span class="eyebrow">The collection</span><h2 class="display d2">Three signature rooms</h2></div></div>
+      <div class="rooms">${Object.entries(ROOMS).map(([k,r])=>`<a class="rcard" href="#${k}"><img src="${I(r.img)}" alt="${r.name} cinema room" loading="lazy"><span class="num">${r.num}</span><div class="meta"><h3>${r.name}</h3><p>${r.tag}</p><span class="link" style="min-height:32px">Discover more ${arrow}</span></div></a>`).join('')}</div>
+    </div></section>`
   + `<section class="band on-light"><div class="wrap">
       <div class="shead"><div><span class="eyebrow">The philosophy</span><h2 class="display d2">What every room shares</h2></div></div>
-      <div class="trio">${PRINCIPLES.map(p=>`<div><h3>${p[0]}</h3><p>${p[1]}</p></div>`).join('')}</div>
+      <div class="trio">${CINEMA_PRINCIPLES.map(p=>`<div><h3>${p[0]}</h3><p>${p[1]}</p></div>`).join('')}</div>
     </div></section>`
-  + `<section class="band tight"><div class="wrap">
-      <div class="shead"><div><span class="eyebrow">The process</span><h2 class="display d2">From first idea to first screening</h2></div></div>${steps(STEPS)}</div></section>`
-  + enquiry('Not sure yet','Find your signature room');
+  + partnersBand()
+  + showrooms()
+  + enquiry('Home Cinema','Your space. Our signature.',{eyebrow:'Start your project',text:'Every space is unique. Each model is designed to adapt to your home, your lifestyle and your vision.'});
 },
 
 bespoke(){
@@ -677,8 +797,8 @@ contact(){
 
 
 function heroItems(){
-  const HI={forma:'hforma',axis:'haxis',lumen:'hlumen'};
-  return Object.entries(ROOMS).map(([k,r])=>({num:r.num,name:r.name,img:HI[k],href:'#'+k,label:'View '+r.name}))
+  const HI={'home-cinema':'hforma','image-and-sound':'hlumen','home-automation':'hseating'};
+  return Object.entries(SERVICES).map(([k,v])=>({num:v.num,name:v.name,img:HI[k],href:'#'+k,label:'Discover '+v.name}))
     .concat([{num:'04',name:'Bespoke',img:'hskyfall',href:'#bespoke',label:'Discover Bespoke',bespoke:true}]);
 }
 function heroHome(){
@@ -694,7 +814,7 @@ function heroHome(){
         <div class="hh-cta"><a class="btn" href="#home-cinema" style="min-height:40px;padding:0 20px">Discover our world</a></div>
       </div>
       <div class="wrap hh-bar">
-        <div class="hh-rooms" role="tablist" aria-label="Signature rooms and bespoke">${items.map((it,i)=>`<button type="button" class="hh-room${i===0?' on':''}${it.bespoke?' is-bespoke':''}" data-i="${i}" role="tab" aria-selected="${i===0}"><span class="hh-meta"><span class="hh-n">${it.num}</span><span class="hh-name">${it.name}</span></span><span class="hh-prog"><i></i></span></button>`).join('')}</div>
+        <div class="hh-rooms" role="tablist" aria-label="Services and bespoke">${items.map((it,i)=>`<button type="button" class="hh-room${i===0?' on':''}${it.bespoke?' is-bespoke':''}" data-i="${i}" role="tab" aria-selected="${i===0}"><span class="hh-meta"><span class="hh-n">${it.num}</span><span class="hh-name">${it.name}</span></span><span class="hh-prog"><i></i></span></button>`).join('')}</div>
         <a class="hh-view link" href="${items[0].href}" id="hh-view">${items[0].label} <span class="ar"></span></a>
       </div>
     </div>
@@ -749,7 +869,7 @@ function roomView(k){
       </div>
     </div></section>`
   + `<section class="band tight on-char"><div class="wrap"><div class="shead"><div><span class="eyebrow">The process</span><h2 class="display d2">Your ${r.name}, step by step</h2></div></div>${steps(STEPS)}</div></section>`
-  + enquiry(r.name,`Imagine ${r.name} in your home`)
+  + enquiry('Home Cinema',`Imagine ${r.name} in your home`)
   + `<div class="wrap"><a class="next" href="#${nx}"><span class="eyebrow">Next room</span><b>${ROOMS[nx].name}</b></a></div>`;
 }
 
@@ -776,12 +896,12 @@ function projectView(k){
 }
 
 /* mega menu content */
-document.getElementById('mega-rooms').innerHTML = Object.entries(ROOMS).map(([k,r])=>`<a class="mitem" href="#${k}"><div class="ph"><img src="${I(r.img)}" alt="" loading="lazy"></div><b>${r.name}</b><span>${r.tag}</span></a>`).join('');
+document.getElementById('mega-services').innerHTML = Object.entries(SERVICES).map(([k,v])=>`<a class="mitem" href="#${k}"><div class="ph"><img src="${I(v.img)}" alt="" loading="lazy"></div><b>${v.name}</b><span>${v.tag}</span></a>`).join('');
 document.getElementById('mega-projects').innerHTML = Object.entries(PROJECTS).map(([k,p])=>`<a class="mitem" href="#${k}"><div class="ph"><img src="${I(p.img)}" alt="" loading="lazy"></div><b>${p.name}</b><span>${p.tag}</span></a>`).join('');
 
 const app = document.getElementById('app'), hdr = document.getElementById('hdr');
 let lenis = null;
-const SECTIONS = new Set(['enquire','gallery','features']);
+const SECTIONS = new Set(['enquire','gallery','features','solutions','collection']);
 let current = null;
 
 function closeMenus(){
@@ -793,14 +913,15 @@ function render(){
   if (SECTIONS.has(h) && current){ const el=document.getElementById(h); if(el){ if(lenis) lenis.scrollTo(el,{offset:-84}); else el.scrollIntoView({behavior:'smooth'}); } closeMenus(); return; }
   let html, nav = h;
   if (VIEWS[h]) html = VIEWS[h]();
-  else if (ROOMS[h]) { html = roomView(h); nav = 'home-cinema'; }
+  else if (ROOMS[h]) { html = roomView(h); nav = 'services'; }
   else if (PROJECTS[h]) { html = projectView(h); nav = 'bespoke'; }
   else { h='home'; html = VIEWS.home(); }
+  if (['services','home-cinema','image-and-sound','home-automation'].includes(h)) nav = 'services';
   current = h;
   app.style.animation='none'; app.offsetHeight; app.style.animation='';
   app.innerHTML = html;
   document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('is-current',a.dataset.nav===nav));
-  const names = {home:'Consexto',about:'About · Consexto','home-cinema':'Home Cinema · Consexto',bespoke:'Bespoke · Consexto',contact:'Contact · Consexto'};
+  const names = {home:'Consexto',about:'About · Consexto','home-cinema':'Home Cinema · Consexto',services:'Services · Consexto','image-and-sound':'Image & Sound · Consexto','home-automation':'Home Automation · Consexto',bespoke:'Bespoke · Consexto',contact:'Contact · Consexto'};
   document.title = names[h] || ((ROOMS[h]||PROJECTS[h]).name + ' · Consexto');
   closeMenus(); if(lenis) lenis.scrollTo(0,{immediate:true,force:true}); else window.scrollTo(0,0); bind(); setScrolled(); startHero();
 }
